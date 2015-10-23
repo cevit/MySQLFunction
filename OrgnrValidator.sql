@@ -1,4 +1,5 @@
 # Norwegian organisasjonsnummer validator function for MySQL
+# Provided by http://github.com/eydn
 DELIMITER |
 DROP FUNCTION IF EXISTS VALIDATEORG |
 CREATE FUNCTION VALIDATEORG(ORGNR INT) RETURNS TINYINT DETERMINISTIC
@@ -15,7 +16,7 @@ CREATE FUNCTION VALIDATEORG(ORGNR INT) RETURNS TINYINT DETERMINISTIC
         IF LENGTH(ORGNR) != 9 THEN
             SET RESULT = 0;
         ELSE
-            WHILE COUNTER < LENGTH ( orgNr ) DO
+            WHILE COUNTER < LENGTH (ORGNR) DO
                 BEGIN
                     SET SUM     = SUM + ( SUBSTRING(ORGNR, COUNTER, 1) * SUBSTRING(WEIGHTS, COUNTER, 1) );
                     SET COUNTER = COUNTER + 1;
